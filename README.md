@@ -18,13 +18,13 @@
 - ``docker exec -it <containerId> bash``
 - Run Composer
 - ``composer install``
-- generate app secret
-- ``php bin/console make:command regenerate-app-secret``
 - get api key from weatherapi.com
 - Run Migration
 - ``symfony console doctrine:migrations:migrate``
 - Run Tests
 - ``php bin/phpunit``
 - Run server
-- ``symfony serve -v``
+- ``symfony serve -d``
 - http://127.0.0.1:8000/
+- phpmyadmin access
+- http://127.0.0.1:9999/
