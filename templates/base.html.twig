@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <script src="{{ asset('assets/js/homepage.js') }}"></script>
+
+
+        <input type="hidden" class="base_url" value="{{ app.request.getSchemeAndHttpHost }}">
+        <input type="hidden" class="csrf_value" value="{{ app.request.uri }}">
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+
+        <div class="load_parent_div hide_div">
+            <div class='text-center'>
+                <img src='{{ asset("assets/images/ajax-loader.gif") }}' width="25" height="25" >
+            </div>
+        </div>
+
+
+        <header>
+            <div class="navbar navbar-inverse mb-0">
+                <div class="container d-flex justify-content-between">
+                    <a href="#" class="navbar-brand d-flex align-items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                        <strong>Weather</strong>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main role="main">
+            {% include 'components/error.html.twig' %}
+
+
+            {% block body %}{% endblock %}
+        </main>
+    </body>
+</html>

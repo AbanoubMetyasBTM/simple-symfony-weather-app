@@ -1,0 +1,76 @@
+{% include 'components/error.html.twig' %}
+
+{% if weather_days != null %}
+
+    <div class="container_body">
+        <div class="container_weather">
+            <div class="weather-side">
+                <div class="weather-gradient"></div>
+                <div class="date-container">
+                    <h2 class="date-dayname">
+                        {{ weather_days[0].date|date('l') }}
+                    </h2>
+                    <span class="date-day">
+                        {{ weather_days[0].date|date('Y-m-d') }}
+                    </span>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin location-icon">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span class="location">
+                        {{ request_data.cityName }}, {{ request_data.countryCode }}
+                    </span>
+                </div>
+                <div class="weather-container">
+                    <img src="{{ weather_days[0].conditionIcon }}">
+                    <h1 class="weather-temp">{{ weather_days[0].curDegree ?? "" }}°C</h1>
+                    <h3 class="weather-desc">{{ weather_days[0].conditionText }}</h3>
+                </div>
+            </div>
+            <div class="info-side">
+                <div class="today-info-container">
+                    <div class="today-info">
+                        <div class="precipitation">
+                            <span class="title">
+                                Rain Possibility
+                            </span>
+                            <span class="value">{{ weather_days[0].dailyChanceOfRain }} %</span>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="precipitation">
+                            <span class="title">
+                                Snow Possibility
+                            </span>
+                            <span class="value">{{ weather_days[0].dailyChanceOfSnow }} %</span>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="humidity">
+                            <span class="title">HUMIDITY</span>
+                            <span class="value">{{ weather_days[0].avgHumidity }} %</span>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="wind">
+                            <span class="title">WIND</span>
+                            <span class="value">{{ weather_days[0].windMaxSpeed }} km/h</span>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="week-container">
+                    <ul class="week-list">
+                        {% for key,day in weather_days %}
+                            <li class="{{ key == 0 ? 'active':'' }}">
+                                <img src="{{ day.conditionIcon }}">
+                                <span class="day-name">{{ day.date|date('l') }}</span>
+                                <span class="day-temp">{{ day.minDegree }} - {{ day.maxDegree }}°C</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Check your weather!{% endblock %}
+
+{% block body %}
+
+    <section class="jumbotron py-5 mb-0">
+        <div class="container">
+            <h2 class="jumbotron-heading">Check your Weather</h2>
+
+            <form action="{{ url('app_get_result')}}" class="form-inline">
+                <input type="hidden" name="token" value="{{ csrf_token('general_csrf') }}" />
+
+                <div class="form-group">
+                    <label for="countryCode">Country:</label>
+
+                    <select name="countryCode" id="countryCode" class="form-control">
+                        {% for key, country in countries %}
+                            <option {{ key==(request_data.countryCode??"") ? "selected" : "" }} value="{{ key }}">{{ country }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cityName">City:</label>
+                    <input type="text" class="form-control" name="cityName" id="cityName" value="{{ request_data.cityName ?? ""  }}">
+                </div>
+
+                <button type="button" class="btn btn-primary get_result">Submit</button>
+
+            </form>
+
+        </div>
+    </section>
+
+    <div class="weather_parent_div"></div>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% for message in app.flashes('errors') %}
+    {% if message|length %}
+        <div class="alert alert-danger">
+            {{ message | raw }}
+        </div>
+    {% endif %}
+{% endfor %}
