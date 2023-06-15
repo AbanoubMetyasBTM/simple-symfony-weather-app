@@ -16,11 +16,11 @@
 - ``docker-compose build && docker-compose up -d``
 - Access PHP container, you can get containerId by running docker-compose ps  
 - ``docker exec -it <containerId> bash``
+- Run Composer
+- ``composer install``
 - generate app secret
 - ``php bin/console make:command regenerate-app-secret``
 - get api key from weatherapi.com
-- Run Composer
-- ``composer install``
 - Run Migration
 - ``symfony console doctrine:migrations:migrate``
 - Run Tests
