@@ -12,12 +12,14 @@
 ## Installation
 - clone repo
 - change .env.example to .env
-- generate app secret
-- ``php bin/console make:command regenerate-app-secret``
 - Run Docker
 - ``docker-compose build && docker-compose up -d``
+- generate app secret
+- ``php bin/console make:command regenerate-app-secret``
 - get api key from weatherapi.com
 - ``docker exec -it code_red-php-1 bash``
+- Run Composer
+- ``composer install``
 - Run Migration
 - ``symfony console doctrine:migrations:migrate``
 - Run Tests
