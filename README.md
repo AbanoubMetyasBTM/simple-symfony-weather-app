@@ -14,10 +14,11 @@
 - change .env.example to .env
 - Run Docker
 - ``docker-compose build && docker-compose up -d``
+- Access PHP container, you can get containerId by running docker-compose ps  
+- ``docker exec -it <containerId> bash``
 - generate app secret
 - ``php bin/console make:command regenerate-app-secret``
 - get api key from weatherapi.com
-- ``docker exec -it code_red-php-1 bash``
 - Run Composer
 - ``composer install``
 - Run Migration
